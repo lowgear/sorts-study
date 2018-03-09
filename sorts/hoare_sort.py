@@ -1,5 +1,4 @@
 from sorts.sort_common import sort_preparation
-from random import randint
 
 
 class _HoareSorter:
@@ -8,8 +7,7 @@ class _HoareSorter:
         self.less = cmp
 
     def _partition(self, lst, left, right):
-        pivot_key = self.key(lst[randint(left, right)])
-        # pivot_key = self.key(lst[left])
+        pivot_key = self.key(lst[left])
         low, high = left, right
         while True:
             while self.less(self.key(lst[low]), pivot_key):
@@ -47,6 +45,30 @@ class _HoareSorter:
         self.sort(lst, high, right)
 
 
-def hoare_sort(lst, key=None, reverse=False):
+def sort(lst, key=None, reverse=False):
     key, cmp = sort_preparation(lst, key, reverse)
     _HoareSorter(key, cmp).sort(lst, 0, len(lst) - 1)
+
+
+def _best_order(lst, left, right):
+    if left > right:
+        return
+    pivot_key = lst[left]
+    pivot_key[0] = (left + right) // 2
+    center = (left + right) // 2
+    lst[left], lst[center] = lst[center], lst[left]
+
+    _best_order(lst, left, center - 1)
+    _best_order(lst, center + 1, right)
+
+
+def best_case_data(length: int):
+    lst = [[0, i] for i in range(length)]
+    _best_order(lst, 0, length - 1)
+    lst.sort(key=lambda x: x[1])
+    res = [i[0] for i in lst]
+    return res
+
+
+def worst_case_data(length: int):
+    return [i for i in range(length)]

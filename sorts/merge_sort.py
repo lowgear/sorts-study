@@ -1,5 +1,4 @@
 from sorts.sort_common import sort_preparation
-import math
 
 
 class _MergeSorter:
@@ -43,7 +42,7 @@ class _MergeSorter:
             dist[right - remain[1] + i] = source[i]
 
 
-def merge_sort(lst, key=None, reverse=False):
+def sort(lst, key=None, reverse=False):
     key, cmp = sort_preparation(lst, key, reverse)
     if len(lst) == 0:
         return
@@ -51,3 +50,18 @@ def merge_sort(lst, key=None, reverse=False):
     buffer = [None for i in range(len(lst))]
     # depth = int(math.ceil(math.log2(len(lst))))
     _MergeSorter(key, cmp).sort(lst, buffer, 0, len(lst), False)
+
+
+def best_case_data(length: int):
+    return [i for i in range(length)]
+
+
+def _worst_order(ordered_elements):
+    if len(ordered_elements) == 0:
+        return []
+    return _worst_order([ordered_elements[::2]]) + \
+        _worst_order([ordered_elements[1::2]])
+
+
+def worst_case_data(length: int):
+    return _worst_order([i for i in range(length)])

@@ -1,3 +1,10 @@
+import random
+
+
+DEFAULT_SEED = 7
+r = random.Random(DEFAULT_SEED)
+
+
 def _less(x, y):
     return x < y
 
@@ -18,3 +25,13 @@ def sort_preparation(lst, key=None, reverse=False):
     if reverse:
         return key, _greater
     return key, _less
+
+
+random_data_cache = dict()
+
+
+def random_data(length: int):
+    if length not in random_data_cache.keys():
+        random_data_cache[length] = \
+            [r.randint(0, length) for i in range(length)]
+    return random_data_cache[length]

@@ -34,10 +34,18 @@ class _Heapifier:
                 return
 
 
-def heap_sort(lst, key=None, reverse=False):
+def sort(lst, key=None, reverse=False):
     key, cmp = sort_preparation(lst, key, reverse)
 
     h = _Heapifier(key, cmp)
     h.heapify(lst)
     for i in range(len(lst)):
         h.delete_max(lst, len(lst) - i)
+
+
+def best_case_data(length: int):
+    return [0 for i in range(length)]
+
+
+def worst_case_data(length: int):
+    return [i for i in range(length)]

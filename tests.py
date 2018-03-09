@@ -1,11 +1,11 @@
 import unittest
 import random
-from sorts.bubble_sort import bubble_sort
-from sorts.heap_sort import heap_sort
-from sorts.hoare_sort import hoare_sort
-from sorts.merge_sort import merge_sort
-from sorts.shell_sort import shell_sort
-from sorts.insertion_sort import insertion_sort
+from sorts.bubble_sort import sort as bubble_sort
+from sorts.heap_sort import sort as heap_sort
+from sorts.hoare_sort import sort as hoare_sort
+from sorts.merge_sort import sort as merge_sort
+from sorts.shell_sort import sort as shell_sort
+from sorts.insertion_sort import sort as insertion_sort
 
 size = 0
 
