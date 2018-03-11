@@ -7,7 +7,10 @@ class _Heapifier:
         self.less = cmp
 
     def heapify(self, lst):
-        for i in range((len(lst) - 1) // 2, -1, -1):
+        max_power_2 = 1
+        while max_power_2 * 2 < len(lst):
+            max_power_2 *= 2
+        for i in range(max_power_2, -1, -1):
             self.sift_down(lst, i, len(lst))
 
     def delete_max(self, lst, length):
